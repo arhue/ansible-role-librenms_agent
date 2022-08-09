@@ -7,8 +7,11 @@
 
 - name: Change the /etc/snmp/smart.config
   ansible.builtin.template:
-    src: smart.config.j2
+    src: scripts/smart.config.j2
     dest: /etc/snmp/smart.config
+    owner: root
+    group: root
+    mode: 0644
   when:
     - librenms_agent__smart_devices is defined
   notify:
