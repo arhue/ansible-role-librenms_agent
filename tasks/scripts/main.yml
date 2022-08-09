@@ -20,5 +20,5 @@
   when: "'proxmox' in librenms_agent__agent_local_scripts"
 
 - name: Smart Script
-  include_tasks: proxmox.yml
+  include_tasks: smart.yml
   when: "'smart' in librenms_agent__snmp_scripts"
