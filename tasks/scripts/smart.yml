@@ -2,6 +2,8 @@
   package:
     name: smartmontools
     state: present
+  notify:
+    - Restart snmpd
 
 - name: Change the /etc/snmp/smart.config
   ansible.builtin.template:
@@ -9,3 +11,5 @@
     dest: /etc/snmp/smart.config
   when:
     - librenms_agent__smart_devices is defined
+  notify:
+    - Restart snmpd

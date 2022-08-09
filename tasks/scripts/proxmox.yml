@@ -2,3 +2,5 @@
   package:
     name: libpve-apiclient-perl
     state: present
+  notify:
+    - Restart snmpd
