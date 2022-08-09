@@ -183,18 +183,6 @@ extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{%
 {% endfor %}
 {% endfor %}
 {% endif %}
-{% if librenms_agent__agent_local_scripts is defined and librenms_agent__agent_local_scripts | length > 0 %}
-{% for scripts in librenms_agent__agent_local_scripts %}
-{% for script in librenms_agent__scripts %}
-{% if scripts == script.file %}
-# {{ script.name }}
-extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
-
-
-{% endif %}
-{% endfor %}
-{% endfor %}
-{% endif %}
 #  Note that this last entry requires the script '/tmp/shtest' to be created first,
 #    containing the same three shell commands, before the line is uncommented
 
