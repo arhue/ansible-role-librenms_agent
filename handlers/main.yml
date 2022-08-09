@@ -10,3 +10,10 @@
     name: snmpd
     state: reloaded
     daemon_reload: true
+
+- name: Restart check_mk
+  service:
+    name: check_mk.socket
+    state: restarted
+
+

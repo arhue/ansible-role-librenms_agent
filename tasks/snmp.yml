@@ -1,0 +1,35 @@
+---
+- name: Creating Scripts Folder
+  file:
+    path: "{{ librenms_agent__scripts_dir }}"
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
+
+- name: Install snmp Scripts
+  get_url:
+    url: "{{ librenms_agent__snmp_github_repo }}/{{ item }}"
+    dest: "{{ librenms_agent__scripts_dir }}/{{ item }}"
+    force: "{{ librenms_agent__scripts_update }}"
+    mode: 0755
+  failed_when: false
+  with_flattened: "{{ librenms_agent__snmp_scripts }}"
+  when: librenms_agent__snmp_scripts is defined and ( librenms_agent__snmp_scripts | length > 0 )
+
+- name: Disable snmp Logging
+  replace:
+    path: /lib/systemd/system/snmpd.service
+    regexp: '(\s+)-Lsd(\s+.*)?$'
+    replace: '\1-LSed\2'
+  when: librenms_agent__snmp_no_logging
+  notify: Reload snmpd
+
+- name: Configure snmp
+  template:
+    src: "snmpd.conf.j2"
+    dest: "{{ librenms_agent__snmp_dir }}/snmpd.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart snmpd
