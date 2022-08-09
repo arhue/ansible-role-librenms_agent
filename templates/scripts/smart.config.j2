@@ -1,0 +1,8 @@
+cache=/var/cache/smart
+smartctl=/usr/bin/env smartctl
+useSN=1
+{% if librenms_agent__smart_devices is defined %}
+{% for item in librenms_agent__smart_devices %}
+{{ item }}
+{% endfor %}
+{% endif %}

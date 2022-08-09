@@ -14,3 +14,11 @@
 - name: MySQL Script
   include_tasks: mysql.yml
   when: "'mysql' in librenms_agent__agent_local_scripts or 'mysql' in librenms_agent__snmp_scripts"
+
+- name: Proxmox Script
+  include_tasks: proxmox.yml
+  when: "'proxmox' in librenms_agent__agent_local_scripts"
+
+- name: Smart Script
+  include_tasks: proxmox.yml
+  when: "'smart' in librenms_agent__agent_snmp_scripts"

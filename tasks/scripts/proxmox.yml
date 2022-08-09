@@ -1,0 +1,4 @@
+- name: Install Proxmox dependency
+  package:
+    name: libpve-apiclient-perl
+    state: present
