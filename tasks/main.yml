@@ -16,6 +16,32 @@
     group: root
     owner: root
 
+- name: Creating check_mk folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
+  loop:
+    - /usr/lib/check_mk_agent/plugins
+    - /usr/lib/check_mk_agent/local
+
+- name: Install check_mk agent
+  get_url:
+    url: "{{ librenms_agent__github_repo }}/check_mk_agent"
+    dest: /usr/bin/check_mk_agent
+    mode: 0755
+
+- name: Install check_mk agent systemd files
+  get_url:
+    url: "{{ librenms_agent__github_repo }}/{{ item }}"
+    dest: /etc/systemd/system/{{ item }}
+    mode: 0755
+  loop:
+    - check_mk@.service
+    - check_mk.socket
+
 - name: Install snmp Scripts
   get_url:
     url: "{{ librenms_agent__snmp_github_repo }}/{{ item }}"
@@ -29,7 +55,7 @@
 - name: Install Agent Local Scripts
   get_url:
     url: "{{ librenms_agent__agent_local_github_repo }}/{{ item }}"
-    dest: "{{ librenms_agent__scripts_dir }}/{{ item }}"
+    dest: "/usr/lib/check_mk_agent/local/{{ item }}"
     force: "{{ librenms_agent__scripts_update }}"
     mode: 0755
   failed_when: false

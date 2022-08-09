@@ -3,7 +3,12 @@
 librenms_agent__https: true
 
 librenms_agent__snmp_dir: /etc/snmp
+
 librenms_agent__scripts_dir: "{{ librenms_agent__snmp_dir }}/scripts"
+
+librenms_agent__mkagent_dir: "/usr/lib/check_mk_agent/local"
+
+librenms_agent__github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master
 librenms_agent__snmp_github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp
 librenms_agent__agent_local_github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master/agent-local
 

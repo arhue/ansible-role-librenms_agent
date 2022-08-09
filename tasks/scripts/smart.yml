@@ -11,7 +11,7 @@
     dest: /etc/snmp/scripts/smart.config
     owner: root
     group: root
-    mode: 0644
+    mode: 0755
   when:
     - librenms_agent__smart_devices is defined
   notify:
