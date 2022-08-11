@@ -16,4 +16,7 @@
     name: check_mk.socket
     state: restarted
 
-
+- name: Restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted

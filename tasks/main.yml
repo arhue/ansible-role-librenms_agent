@@ -13,7 +13,11 @@
 
 - name: Setup check_mk
   include_tasks: check_mk.yml
-  when: librenms_agent__agent_local_scripts is defined and ( librenms_agent__agent_local_scripts | length > 0 )
+  when: librenms_agent__install_checkmk
+
+- name: Setup syslog
+  include_tasks: syslog.yml
+  when: librenms_agent__install_syslog
 
 - name: Configure Scripts
   include_tasks: scripts/main.yml

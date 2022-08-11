@@ -27,6 +27,9 @@ librenms_agent__mysql_port:
 
 librenms_agent__scripts_update: false
 
+librenms_agent__install_checkmk: true
+librenms_agent__install_syslog: true
+librenms_agent__syslog_ip: 127.0.0.1
 librenms_agent__agent_local_scripts: []
 #  - apache
 #  - bind

@@ -10,6 +10,14 @@
     - /usr/lib/check_mk_agent/plugins
     - /usr/lib/check_mk_agent/local
 
+- name: Install Dependancies
+  package:
+    name:
+      - monitoring-plugins
+      - nagios-plugins-contrib
+      - nagios-plugins
+    state: present
+
 - name: Install check_mk agent
   get_url:
     url: "{{ librenms_agent__github_repo }}/check_mk_agent"
@@ -20,7 +28,7 @@
   get_url:
     url: "{{ librenms_agent__github_repo }}/{{ item }}"
     dest: /etc/systemd/system/{{ item }}
-    mode: 0755
+    mode: 0644
   loop:
     - check_mk@.service
     - check_mk.socket
@@ -35,6 +43,7 @@
   with_flattened: "{{ librenms_agent__agent_local_scripts }}"
   notify:
     - Restart check_mk
+  when: librenms_agent__agent_local_scripts is defined and ( librenms_agent__agent_local_scripts | length > 0 )
 
 - name: Enable services
   ansible.builtin.service:
