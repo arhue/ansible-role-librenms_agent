@@ -7,14 +7,14 @@
 
 - name: Postgres config
   ansible.builtin.lineinfile:
-    path: {{ librenms_agent__scripts_dir }}/postgres
+    path: "{{ librenms_agent__scripts_dir }}/postgres"
     regex: '^DBuser'
     line: DBuser={{ postgres_user }}
   notify: Restart snmpd
 
 - name: Postgres config
   ansible.builtin.lineinfile:
-    path: {{ librenms_agent__scripts_dir }}/postgres
+    path: "{{ librenms_agent__scripts_dir }}/postgres"
     regex: '^cpg'
     line: cpg='/usr/bin/env check_postgres'
   notify: Restart snmpd
