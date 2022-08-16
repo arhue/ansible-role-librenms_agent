@@ -4,7 +4,7 @@
     name: rsyslog
     state: present
 
-- name: Configure snmp
+- name: Configure syslog
   template:
     src: librenms.conf.j2
     dest: /etc/rsyslog.d/librenms.conf

@@ -21,6 +21,7 @@ librenms_agent__mysql_username:
 librenms_agent__mysql_password:
 librenms_agent__mysql_port:
 
+postgres_user: postgres
 #librenms_agent__smart_devices:
 #  - sda
 #  - sdb  

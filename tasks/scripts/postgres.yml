@@ -1,0 +1,20 @@
+---
+
+- name: Install Dependancies for postgres script
+  package:
+    name: check-postgres
+    state: present
+
+- name: Postgres config
+  ansible.builtin.lineinfile:
+    path: {{ librenms_agent__scripts_dir }}/postgres
+    regex: '^DBuser'
+    line: DBuser={{ postgres_user }}
+  notify: Restart snmpd
+
+- name: Postgres config
+  ansible.builtin.lineinfile:
+    path: {{ librenms_agent__scripts_dir }}/postgres
+    regex: '^cpg'
+    line: cpg='/usr/bin/env check_postgres'
+  notify: Restart snmpd
