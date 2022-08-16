@@ -17,11 +17,11 @@
 
 - name: Postgres Script
   include_tasks: postgres.yml
-  when: "'postgres' in librenms_agent__agent_local_scripts"
+  when: "'postgres' in librenms_agent__snmp_scripts"
 
 - name: Proxmox Script
   include_tasks: proxmox.yml
-  when: "'proxmox' in librenms_agent__snmp_scripts"
+  when: "'proxmox' in librenms_agent__agent_local_scripts"
 
 - name: Smart Script
   include_tasks: smart.yml
