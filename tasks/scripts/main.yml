@@ -21,7 +21,7 @@
 
 - name: Docker Script
   include_tasks: docker-stats.yml
-  when: "'docker-stats' in librenms_agent__snmp_scripts"
+  when: "'docker-stats.sh' in librenms_agent__snmp_scripts"
 
 - name: Proxmox Script
   include_tasks: proxmox.yml
