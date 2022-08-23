@@ -1,0 +1,12 @@
+---
+
+- name: Install Dependancies for docker-stats script
+  package:
+    name: jq
+    state: present
+
+- name: Add Debian-snmp to docker
+  ansible.builtin.user:
+    name: Debian-snmp
+    groups: docker
+    append: yes
