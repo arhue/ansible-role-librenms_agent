@@ -4,9 +4,11 @@
   package:
     name: jq
     state: present
+  notify: Restart snmpd
 
 - name: Add Debian-snmp to docker
   ansible.builtin.user:
     name: Debian-snmp
     groups: docker
     append: yes
+  notify: Restart snmpd
