@@ -7,7 +7,7 @@
 - name: Replace SNMP communities and managers
   community.windows.win_snmp:
     community_strings:
-    - {{ librenms_agent__snmp_community }}
+    - "{{ librenms_agent__snmp_community }}"
     permitted_managers:
     - {{ librenms_agent__snmp_permitted_managers }}
     action: set
