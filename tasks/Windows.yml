@@ -1,0 +1,13 @@
+-  name: Install Service
+   ansible.windows.win_feature:
+     name: SNMP-Service
+     include_management_tools: yes
+     state: present
+
+- name: Replace SNMP communities and managers
+  community.windows.win_snmp:
+    community_strings:
+    - {{ librenms_agent__snmp_community }}
+    permitted_managers:
+    - {{ librenms_agent__snmp_ip }}
+    action: set

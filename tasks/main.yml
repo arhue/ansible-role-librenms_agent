@@ -1,23 +1,9 @@
 ---
-
-- name: "Include {{ ansible_os_family }} Specific Variables"
-  include_vars: "{{ ansible_os_family }}.yml"
-
-- name: Install Dependancies
-  package:
-    name: "{{ librenms_agent__dependant_packages }}"
-    state: present
-
-- name: Setup snmp
-  include_tasks: snmp.yml
-
-- name: Setup check_mk
-  include_tasks: check_mk.yml
-  when: librenms_agent__install_checkmk
+- name: Setup syslog
+  include_tasks: Linux.yml
+  when: ansible_os_family == "Debian"
 
 - name: Setup syslog
-  include_tasks: syslog.yml
-  when: librenms_agent__install_syslog
+  include_tasks: Windows.yml
+  when: ansible_os_family == "Windows"
 
-- name: Configure Scripts
-  include_tasks: scripts/main.yml
