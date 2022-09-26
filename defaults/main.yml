@@ -1,4 +1,6 @@
 ---
+#Windows only
+librenms_agent__snmp_permitted_managers: 127.0.0.1
 
 librenms_agent__snmp_ip: 127.0.0.1
 librenms_agent__snmp_port: 161
