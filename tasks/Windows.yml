@@ -9,5 +9,5 @@
     community_strings:
     - "{{ librenms_agent__snmp_community }}"
     permitted_managers:
-    - {{ librenms_agent__snmp_permitted_managers }}
+    - "{{ librenms_agent__snmp_permitted_managers }}"
     action: set
